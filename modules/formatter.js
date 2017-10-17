@@ -9,12 +9,12 @@ let moment = require("moment"),
 
 exports.bonjour = response => {
     return {
-        "text":"Bonjour " + response.first_name + ", et bienvenue dans votre assistant StarForce.",
+        "text":"Hello " + response.first_name + ", and welcome to your StarForce assistant.",
     }
 };
 exports.shipChoice = () =>{
   return {
-      "text":"Quel vaisseau vous intéresse en particulier? ",
+      "text":"Which spaceship do you prefer? ",
       "quick_replies":[
         {
           "content_type":"text",
