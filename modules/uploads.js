@@ -14,7 +14,7 @@ var options = {
 //var geocoder = nodeGeocoder(options);
 exports.doAct = async(sender, shipType) => {
   hueLights.light(shipType);
-  messenger.send({text: `Le ${shipType}. Very good choice. Here are its detailed specs:`}, sender);
+  messenger.send({text: `The ${shipType}. Very good choice. Here are its detailed specs:`}, sender);
   let returnUrl="https://sdo-demo-main-141e22218df-14-15950af6391.secure.force.com/Public/ingenico_PostCheckout?sender="+sender+"&shipType="+shipType.replace('-','').replace(' ','').toLowerCase();
 
   let redirecturl = await ingenico.createCheckout(returnUrl,shipType);
