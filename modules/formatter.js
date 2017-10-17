@@ -96,12 +96,12 @@ exports.ficheinfo = (shipType,checkouturl) => {
                 "buttons": [
                     {
                         "type": "postback",
-                        "title": "Fiche Technique",
+                        "title": "Technical Specs",
                         "payload": "fiche,"+shipType
                     },
                     {
                         "type":"web_url",
-                        "title":"Avis Communauté",
+                        "title":"Community Reviews",
                         "url": "https://sdodemo-main-141e22218e0-144-15950af6391.force.com/starforce/s/topic/"+commlinks[shipType.replace('-','').replace(' ','').toLowerCase()]+"?"+process.env.HEROKU_RELEASE_VERSION,
                         "webview_height_ratio": "full",
                         "messenger_extensions": false
@@ -109,7 +109,7 @@ exports.ficheinfo = (shipType,checkouturl) => {
                     },
                     {
                       "type":"web_url",
-                      "title":"Acheter - "+price[shipType.replace('-','').replace(' ','').toLowerCase()]+"€",
+                      "title":"Buy online - "+price[shipType.replace('-','').replace(' ','').toLowerCase()]+"$",
                       "url": checkouturl,
                       "webview_height_ratio": "tall",
                       "messenger_extensions": false,
