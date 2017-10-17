@@ -14,7 +14,7 @@ var options = {
 //var geocoder = nodeGeocoder(options);
 exports.doAct = async(sender, shipType) => {
   hueLights.light(shipType);
-  messenger.send({text: `Le ${shipType}. Très bon choix. Voilà ses caractéristiques`}, sender);
+  messenger.send({text: `Le ${shipType}. Very good choice. Here are its detailed specs:`}, sender);
   let returnUrl="https://sdo-demo-main-141e22218df-14-15950af6391.secure.force.com/Public/ingenico_PostCheckout?sender="+sender+"&shipType="+shipType.replace('-','').replace(' ','').toLowerCase();
 
   let redirecturl = await ingenico.createCheckout(returnUrl,shipType);
@@ -30,13 +30,13 @@ exports.processUpload = async(sender, attachments) => {
     let attachment = attachments[0];
     if (attachment.type === "image") {
       hueLights.reset();
-      messenger.send({text: 'Laissez-moi analyser cette photo avec Salesforce Einstein Vision Service...'}, sender);
+      messenger.send({text: 'Let me analyse this picture with Einstein Vision...'}, sender);
       setTimeout(function () {messenger.writingIcon(sender);}, 50)
       let shipType = await einstein.classify(attachment.payload.url);
       console.log('classification defined:',shipType);
       if(shipType.probability<0.4){
         console.log("probability too low",shipType.probability);
-        messenger.send({text: `Je ne reconnais pas ce vaisseau. Merci de réessayer.`}, sender);
+        messenger.send({text: `I do not recognize this spaceship. Please try again.`}, sender);
       }
       else{
             this.doAct(sender,shipType.label);
